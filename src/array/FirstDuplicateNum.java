@@ -38,6 +38,7 @@ public class FirstDuplicateNum {
     }
 
     private int firstDuplicate(int[] a) {
+        // first solution 
         for (int i = 1; i < a.length; i++) {
             int test = a[i];
             for (int j = i - 1; j >= 0; j--) {
@@ -47,5 +48,23 @@ public class FirstDuplicateNum {
             }
         }
         return -1;
+        
+        
+        /*
+        second solution 
+         
+        Set<Integer> value = new HashSet<>();
+        
+        for(int val: a){
+            if(value.contains(val)){
+                return val;
+            }
+            else{
+                value.add(val);
+            }
+        }
+        return -1;
+        
+        */
     }
 }
