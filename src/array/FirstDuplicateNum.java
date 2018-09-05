@@ -28,24 +28,40 @@ There are 2 duplicates: numbers 2 and 3. The second occurrence of 3 has a smalle
 public class FirstDuplicateNum {
 
     public static void main(String args[]) {
-        int arr[] = {2, 1, 3, 5, 3, 2};
+        int arr[] = {8, 4, 6, 2, 6, 4, 7, 9, 5, 8};
         FirstDuplicateNum dn = new FirstDuplicateNum();
-        dn.firstDuplicate(arr);
+        int value = dn.firstDuplicate(arr);
+        System.out.println(value);
     }
 
-    private void firstDuplicate(int[] arr) {
-        int tmpArr[] = new int[arr.length - 1];
-        System.out.println(tmpArr.length);
-        for (int i = 0; i < arr.length; i++) {
-            if (i == 0) {
-                tmpArr[i] = arr[i];
-                continue;
-            }
-            for (int j = 0; j < tmpArr.length; j++) {
-                if (tmpArr[j] == arr[i]) {
+    private int firstDuplicate(int[] a) {
+        if (a == null || a.length == 0) {
+            return -1;
+        }
+        if (a.length == 1) {
+            return -1;
+        } else if (a.length == 2 && a[0] == a[1]) {
+            return a[0];
+        }
 
+        int index = -1;
+        for (int i = 0; i < a.length - 1; i++) {
+            for (int j = i; j < a.length - 1; j++) {
+                if (a[i] == a[j + 1]) {
+                    if (index == -1) {
+                        index = j + 1;
+                    } else if (index > (j + 1)) {
+                        index = j + 1;
+                    }
+                    break;
                 }
             }
         }
+        if (index == -1) {
+            return index;
+        } else {
+            return a[index];
+        }
+
     }
 }
